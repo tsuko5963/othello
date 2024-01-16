@@ -1,0 +1,11 @@
+.board {
+    margin: 10px;
+    padding: 10px;
+    background-color: black;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    background-color: green;
+}
