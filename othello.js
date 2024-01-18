@@ -35,7 +35,7 @@ class Stone {
                 }
             }
         }
-        this.draw();
+//        this.draw();
     }
     reverse() {
         if(this.color == 1) {
@@ -64,6 +64,25 @@ class Stone {
             this.ctx.fill();
         } else {
             this.color = 0;
+            if(next == 1){
+                if(this.black_check.length > 0) {
+                    this.ctx.strokeStyle = "#444444";
+                    this.ctx.fillStyle = "#444444";
+                    this.ctx.lineWidth = 2;
+                    this.ctx.beginPath();
+                    this.ctx.arc(25, 25, 8, 0, 2 * Math.PI);
+                    this.ctx.fill();
+                }
+            } else { 
+                if(this.white_check.length > 0) {
+                    this.ctx.strokeStyle = "#BBBBBB";
+                    this.ctx.fillStyle = "#BBBBBB";
+                    this.ctx.lineWidth = 2;
+                    this.ctx.beginPath();
+                    this.ctx.arc(25, 25, 8, 0, 2 * Math.PI);
+                    this.ctx.fill();
+                }
+            }
         }
     }
 }
@@ -100,7 +119,7 @@ function make_board(){
             }
             let stone = new Stone(canvas, color, i, j);
             board.push(stone);
-            stone.draw();
+//            stone.draw();
         }
         table.appendChild(tr);
     }
@@ -158,6 +177,7 @@ function disp() {
             comment.textContent = "白の番です。";
         }
     }
+    redraw();
 }
 
 function reverse_check(x, y, color) {
@@ -219,7 +239,7 @@ function reverse(x, y, color, i) {
     while((x1 >= 0) && (y1 >= 0) && (x1 <= 7) && (y1 <= 7)) {
         if(board[x1 * 8 + y1].color != color) {
             board[x1 * 8 + y1].reverse();
-            board[x1 * 8 + y1].draw();
+//            board[x1 * 8 + y1].draw();
             x1 += dx; 
             y1 += dy;
             continue;
@@ -240,6 +260,14 @@ function point_check() {
             if(board[i * 8 + j].color == 2) {
                 white += 1;
             }
+        }
+    }
+}
+
+function redraw() {
+    for(let i = 0; i < 8; i++){
+        for(let j = 0; j < 8; j++){
+            board[i * 8 + j].draw();
         }
     }
 }
