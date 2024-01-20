@@ -35,7 +35,6 @@ class Stone {
                 }
             }
         }
-//        this.draw();
     }
     reverse() {
         if(this.color == 1) {
@@ -119,7 +118,6 @@ function make_board(){
             }
             let stone = new Stone(canvas, color, i, j);
             board.push(stone);
-//            stone.draw();
         }
         table.appendChild(tr);
     }
@@ -239,7 +237,6 @@ function reverse(x, y, color, i) {
     while((x1 >= 0) && (y1 >= 0) && (x1 <= 7) && (y1 <= 7)) {
         if(board[x1 * 8 + y1].color != color) {
             board[x1 * 8 + y1].reverse();
-//            board[x1 * 8 + y1].draw();
             x1 += dx; 
             y1 += dy;
             continue;
@@ -252,23 +249,16 @@ function reverse(x, y, color, i) {
 function point_check() {
     black = 0;
     white = 0;
-    for(let i = 0; i < 8; i++){
-        for(let j = 0; j < 8; j++){
-            if(board[i * 8 + j].color == 1) {
-                black += 1;
-            }
-            if(board[i * 8 + j].color == 2) {
-                white += 1;
-            }
+    board.forEach(function(s) {
+        if(s.color == 1) {
+            black += 1;
         }
-    }
+        if(s.color == 2) {
+            white += 1;
+        }
+    });
 }
 
 function redraw() {
-    for(let i = 0; i < 8; i++){
-        for(let j = 0; j < 8; j++){
-            board[i * 8 + j].draw();
-        }
-    }
+    board.forEach(function(s) { s.draw(); });
 }
-
